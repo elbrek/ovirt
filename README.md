@@ -7,7 +7,7 @@
   - на странице входа присутсвует предупрежедние 
   ![](media/pkix_warning.png)
 ---
-* включить режим глобального обслуживания  обслуживания 
+* включить режим глобального обслуживания
 ```bash
 #  команда выполняется на узлах с разрешенным запуском HostedEngine
 hosted-engine --set-maintenance --mode=global
@@ -47,3 +47,10 @@ hosted-engine --set-maintenance --mode=none
 /usr/share/ovirt-engine/setup/dbutils/unlock_entity.sh -t Image -i <item-id>
 ```
 
+## Зацикливание ввода учетных данных при доступе к BMC (Aquarius)
+
+Необходимо перезапустить BMC утилитой ipmitool 
+
+```bash 
+ipmitool -I lanplus -H <BMC-IP> -U <login> -P <passsword> mc reset cold
+```
