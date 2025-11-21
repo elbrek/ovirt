@@ -54,3 +54,29 @@ hosted-engine --set-maintenance --mode=none
 ```bash 
 ipmitool -I lanplus -H <BMC-IP> -U <login> -P <passsword> mc reset cold
 ```
+
+## Повреждение файловой системы виртйальной машины HostedEngine
+
+Призанки: 
+* отсутствует сетевой доступ при запущенной VM 
+* вывод статуса VM содержит информацию об ошибке определения состояния сервисов 
+  
+![alt text](media/he_vm_fsfailed.png)
+
+Причина: 
+* аварийная остановка VM 
+  
+Решение: 
+* подключиться к консоле VM c хоста на котором запущена VM ```hosted-engine --console```
+* список проблемных партиций можно определить выполнив команду ```lsblk```
+
+![alt text](media/he_vm_failed_lsblk.png)
+
+* выполнить восстановление файловой системы 
+```bash
+xfs_repair -L /dev/ovirt/log
+xfs_repair -L /dev/ovirt/var
+xfs_repair -L /dev/ovirt/tmp
+```
+* выключить VM 
+* запустить VM командой ```hosted-engine --vm-start```   
