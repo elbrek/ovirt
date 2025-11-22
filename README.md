@@ -55,7 +55,7 @@ hosted-engine --set-maintenance --mode=none
 ipmitool -I lanplus -H <BMC-IP> -U <login> -P <passsword> mc reset cold
 ```
 
-## Повреждение файловой системы виртйальной машины HostedEngine
+## Повреждение файловой системы виртуальной машины HostedEngine
 
 Призанки: 
 * отсутствует сетевой доступ при запущенной VM 
