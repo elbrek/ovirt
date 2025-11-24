@@ -80,3 +80,22 @@ xfs_repair -L /dev/ovirt/tmp
 ```
 * выключить VM 
 * запустить VM командой ```hosted-engine --vm-start```   
+  
+## Не загружаются образы на домен хранения 
+Признаки: 
+* процедура переходит в состояние "приостановлено системой"
+Причина: 
+* отсутствует доверие корнекому сертификату HostedEngine со стороны узла виртуализации
+Решение:
+* загрузить корневой сертификат и запустить процесс повторной генерации сертификат узла (можно использовать следующий сценарий)
+```bash
+#!/bin/bash
+#$1 - номер региона 
+#$2 - пароль root 
+
+[! -d /etc/pki/ovirt-engine ] && mkdir -p /etc/pki/ovirt-engine
+sshpass -p "$2" scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root@$1:/etc/pki/ovirt-engine/ca.pem /etc/pki/ovirt-engine/
+vdsm-tool configure --force
+systemctl restart vdsmd
+systemctl restart ovirt-imageio
+``` 
