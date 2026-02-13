@@ -142,5 +142,5 @@ systemctl restart ovirt-imageio
 * блокировка пользователя системой резервного копирования (СРК не закрывает сессии)
 
 Решение:
-* снять ограничение на количество сессий ```ngine-config -s UserSessionTimeOutInterval=-1``` 
+* снять ограничение на количество сессий ```engine-config -s UserSessionTimeOutInterval=-1``` 
 * ограничить время активной сессии ```engine-config -s UserSessionTimeOutInterval=60```
