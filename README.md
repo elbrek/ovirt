@@ -142,5 +142,12 @@ systemctl restart ovirt-imageio
 * блокировка пользователя системой резервного копирования (СРК не закрывает сессии)
 
 Решение:
-* снять ограничение на количество сессий ```engine-config -s UserSessionTimeOutInterval=-1``` 
+* разблокировать пользователя ```ovirt-aaa-jdbc-tool user unlock admin```
+* отключить политику блокировки пользователя 
+```bash
+ovirt-aaa-jdbc-tool settings set --name=MAX_FAILURES_PER_INTERVAL --value=0
+ovirt-aaa-jdbc-tool settings set --name=MAX_FAILURES_PER_MINUTE --value=0  
+ovirt-aaa-jdbc-tool settings set --name=MAX_FAILURES_SINCE_SUCCESS --value=0
+ovirt-aaa-jdbc-tool settings set --name=LOCK_MINUTES --value=0
+``` 
 * ограничить время активной сессии ```engine-config -s UserSessionTimeOutInterval=60```
