@@ -131,3 +131,16 @@ vdsm-tool configure --force
 systemctl restart vdsmd
 systemctl restart ovirt-imageio
 ``` 
+
+##  Ошибка при попытке аутентификации "Unable to log in because the user account is disabled or locked. Contact the system administrator"
+Признаки: 
+* сообщение при попытке аутентификации "Unable to log in because the user account is disabled or locked. Contact the system administrator"
+* статус пользователя "locked" (проверяется командой ```ovirt-aaa-jdbc-tool user show admin```)
+![alt text](media/ovirt_account_lock.png)
+
+Причина: 
+* блокировка пользователя системой резервного копирования (СРК не закрывает сессии)
+
+Решение:
+* снять ограничение на количество сессий ```ngine-config -s UserSessionTimeOutInterval=-1``` 
+* ограничить время активной сессии ```engine-config -s UserSessionTimeOutInterval=60```
