@@ -76,6 +76,10 @@ hosted-engine --set-maintenance --mode=none
 ```bash
 /usr/share/ovirt-engine/setup/dbutils/unlock_entity.sh -t Image -i <item-id>
 ```
+* разблокировка всех объектов связанных с определенной VM
+```bash
+/usr/share/ovirt-engine/setup/dbutils/unlock_entity.sh -t vm -r <vm-name>
+```
 
 ## Зацикливание ввода учетных данных при доступе к BMC (Aquarius)
 

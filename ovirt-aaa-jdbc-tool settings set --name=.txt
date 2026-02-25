@@ -1,0 +1,4 @@
+ovirt-aaa-jdbc-tool settings set --name=MAX_FAILURES_PER_INTERVAL --value=1000
+ovirt-aaa-jdbc-tool settings set --name=MAX_FAILURES_PER_MINUTE --value=1000  
+ovirt-aaa-jdbc-tool settings set --name=MAX_FAILURES_SINCE_SUCCESS --value=1000
+ovirt-aaa-jdbc-tool settings set --name=LOCK_MINUTES --value=0
