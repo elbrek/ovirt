@@ -56,6 +56,11 @@ engine-setup --offline --otopi-environment=OVESETUP_CONFIG/continueSetupOnHEVM=b
 ```
 на вопрос обновления перевыпуск сертификатов отвечаем "да" (на все остальные вопросы отвечаем значениями по умолчанию)
 
+```bash
+engine-setup --offline --otopi-environment="OVESETUP_CONFIG/continueSetupOnHEVM=bool:True" --otopi-environment="OVESETUP_PKI/renew=bool:True"
+```
+обновление с полным подавлением интерактивных вопросов
+
 ![alt text](media/offline_install_cert.png)
 * после завершения процедуры проверить процедуру аутентификации на портале 
 * отключить режим обслуживания 
