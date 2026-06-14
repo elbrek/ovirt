@@ -57,7 +57,7 @@ engine-setup --offline --otopi-environment=OVESETUP_CONFIG/continueSetupOnHEVM=b
 на вопрос обновления перевыпуск сертификатов отвечаем "да" (на все остальные вопросы отвечаем значениями по умолчанию)
 
 ```bash
-engine-setup --offline --otopi-environment="OVESETUP_CONFIG/continueSetupOnHEVM=bool:True" --otopi-environment="OVESETUP_PKI/renew=bool:True"
+engine-setup --offline --accept-defaults --otopi-environment="OVESETUP_CONFIG/continueSetupOnHEVM=bool:True" --otopi-environment="OVESETUP_PKI/renew=bool:True"
 ```
 обновление с полным подавлением интерактивных вопросов
 
